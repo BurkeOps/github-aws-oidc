@@ -7,17 +7,17 @@ export interface OIDCConnectorProps extends StackProps {
 }
 
 export class OIDCConnector extends Stack {
-  static THUMB_PRINT_ID = '6938FD4D98BAB03FAADB97B34396831E3780AEA1';
-  static OIDC_URL = 'https://token.actions.githubusercontent.com';
-  static STS_URL = 'sts.amazonaws.com';
-
   constructor(scope: Construct, id: string, props: OIDCConnectorProps) {
     super(scope, id, props);
 
+    const THUMB_PRINT_ID = '6938FD4D98BAB03FAADB97B34396831E3780AEA1';
+    const OIDC_URL = 'https://token.actions.githubusercontent.com';
+    const STS_URL = 'sts.amazonaws.com';
+
     new CfnOIDCProvider(this, 'OIDCConnection', {
-      url: OIDCConnector.OIDC_URL,
-      clientIdList: [OIDCConnector.STS_URL],
-      thumbprintList: [OIDCConnector.THUMB_PRINT_ID],
+      url: OIDC_URL,
+      clientIdList: [STS_URL],
+      thumbprintList: [THUMB_PRINT_ID],
     });
   }
 }
